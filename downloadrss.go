@@ -9,9 +9,9 @@ import (
 
 func downloadRss() {
 
-	url := "https://www.oglaf.com/feeds/rss/"
+	url := "https://xkcd.com/atom.xml"
 
-	out, err := os.Create("current.rss")
+	out, err := os.Create("atom.xml")
 	if err != nil {
 		fmt.Println(err)
 	}
