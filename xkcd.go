@@ -13,7 +13,6 @@ func main() {
 	apiKey, chatId, database := readConfig(configFile)
 	// all of the above are config variables
 	downloadRss()
-	//title, comicUrl, lastBuildDateFormatted := readxml()
 	title, comicUrl, lastBuildDateFormatted, comicUrlImage := readatom()
 	fmt.Println(title)
 	fmt.Println(comicUrl)
