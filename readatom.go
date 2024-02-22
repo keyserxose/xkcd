@@ -68,15 +68,14 @@ func readatom() (title, comicUrl, lastBuildDateFormatted, comicUrlImage, altText
 
 	comicUrl = feed.Entry[0].Id
 
+	// Transforming url to mobile url
+	comicUrl = comicUrl[16:]
+	comicUrl = "https://m.xkcd.com" + comicUrl
+	fmt.Println(comicUrl)
+
 	title = feed.Entry[0].Title
 
 	d := feed.Entry[0].Updated
-
-	//fmt.Println(comicUrl)
-
-	//fmt.Println(title)
-
-	//fmt.Println(d)
 
 	lastBuildDate, err := time.Parse("2006-01-02T03:04:05Z", d)
 	if err != nil {
