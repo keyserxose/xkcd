@@ -72,13 +72,13 @@ func readatom() (title, comicUrl, lastBuildDateFormatted, comicUrlImage string) 
 
 	d := feed.Entry[0].Updated
 
-	fmt.Println(comicUrl)
+	//fmt.Println(comicUrl)
 
-	fmt.Println(title)
+	//fmt.Println(title)
 
-	fmt.Println(d)
+	//fmt.Println(d)
 
-	lastBuildDate, err := time.Parse("2006-02-07T03:04:05Z", d)
+	lastBuildDate, err := time.Parse("2006-01-02T03:04:05Z", d)
 	if err != nil {
 		log.Fatal(err)
 	}

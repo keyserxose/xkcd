@@ -14,9 +14,9 @@ func main() {
 	// all of the above are config variables
 	downloadRss()
 	title, comicUrl, lastBuildDateFormatted, comicUrlImage := readatom()
-	fmt.Println(title)
-	fmt.Println(comicUrl)
-	fmt.Println(lastBuildDateFormatted)
+	fmt.Println("This is the title: " + title)
+	fmt.Println("This is the comic url: " + comicUrl)
+	fmt.Println("This is the date: " + lastBuildDateFormatted)
 	fmt.Println("XML Title:", title)
 	fmt.Println("XML Last Build Date:", lastBuildDateFormatted)
 	filename, executionDate := readDb(rootPath, database, title, lastBuildDateFormatted)
