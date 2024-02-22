@@ -5,7 +5,7 @@ import (
 	"net/url"
 )
 
-func sendToTelegram(apiKey string, chatId string, comicUrl string, comicArchiveUrl string) {
+func sendToTelegram(apiKey, chatId, comicUrl, comicArchiveUrl, altText string) {
 
 	botUrl := "https://api.telegram.org/bot" + apiKey + "/sendPhoto?"
 
@@ -16,5 +16,15 @@ func sendToTelegram(apiKey string, chatId string, comicUrl string, comicArchiveU
 	}
 
 	defer resp.Body.Close()
+
+	botUrlText := "https://api.telegram.org/bot" + apiKey + "/sendMessage?"
+
+	resp2, err := http.PostForm(botUrlText,
+		url.Values{"chat_id": {chatId}, "text": {altText}})
+	if err != nil {
+		panic(err)
+	}
+
+	defer resp2.Body.Close()
 
 }

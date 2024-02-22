@@ -40,7 +40,7 @@ type Img struct {
 	Alt     string   `xml:"alt,attr"`
 }
 
-func readatom() (title, comicUrl, lastBuildDateFormatted, comicUrlImage string) {
+func readatom() (title, comicUrl, lastBuildDateFormatted, comicUrlImage, altText string) {
 
 	xmlFile, err := os.Open("atom.xml")
 	if err != nil {
@@ -62,7 +62,7 @@ func readatom() (title, comicUrl, lastBuildDateFormatted, comicUrlImage string) 
 	var feed Feed
 	xml.Unmarshal(byteValue, &feed)
 
-	fmt.Println(feed.Entry[0].Summary[0].Img[0].Alt)
+	altText = feed.Entry[0].Summary[0].Img[0].Alt
 
 	comicUrlImage = feed.Entry[0].Summary[0].Img[0].Src
 
@@ -97,6 +97,6 @@ func readatom() (title, comicUrl, lastBuildDateFormatted, comicUrlImage string) 
 		fmt.Println(err)
 	}
 
-	return title, comicUrl, lastBuildDateFormatted, comicUrlImage
+	return title, comicUrl, lastBuildDateFormatted, comicUrlImage, altText
 
 }

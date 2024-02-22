@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func evaluate(rootPath, database, filename, title, executionDate, lastBuildDateFormatted, apiKey, chatId, comicUrl, comicUrlImage string) {
+func evaluate(rootPath, database, filename, title, executionDate, lastBuildDateFormatted, apiKey, chatId, comicUrl, comicUrlImage, altText string) {
 
 	if filename == title && executionDate == lastBuildDateFormatted {
 		fmt.Println("No new comics available")
@@ -26,7 +26,7 @@ func evaluate(rootPath, database, filename, title, executionDate, lastBuildDateF
 		fmt.Println("It looks like there is a new comic")
 		fmt.Println("Getting today's comic URL: " + comicUrl)
 		fmt.Println("Getting Image url: " + comicUrlImage)
-		sendToTelegram(apiKey, chatId, comicUrlImage, comicUrl)
+		sendToTelegram(apiKey, chatId, comicUrlImage, comicUrl, altText)
 		writeDB(rootPath, database, title, lastBuildDateFormatted)
 	}
 
