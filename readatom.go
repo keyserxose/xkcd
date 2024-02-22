@@ -68,7 +68,6 @@ func readatom() (title, comicUrl, lastBuildDateFormatted, comicUrlImage, altText
 
 	comicUrl = feed.Entry[0].Id
 
-	// Transforming url to mobile url
 	comicUrl = comicUrl[16:]
 	comicUrl = "https://m.xkcd.com" + comicUrl
 	fmt.Println(comicUrl)
