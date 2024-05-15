@@ -19,8 +19,4 @@
 
 # Go workspace file
 go.work
-
-
 *.json
-
-*.db

@@ -7,3 +7,12 @@ DELETE FROM files;
 DELETE FROM SQLITE_SEQUENCE WHERE NAME = 'files';
 
 select id,filename,executionDate from files where executed = 1 order by id asc limit 1
+
+
+## config
+
+{
+  "ApiKey": "...",
+  "ChatId": "...",
+  "Database": "xkcd.db"
+}
