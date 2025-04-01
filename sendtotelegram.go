@@ -5,14 +5,14 @@ import (
 	"net/url"
 )
 
-func sendToTelegram(apiKey, chatId, comicUrl, comicArchiveUrl, altText, title string) {
+func sendToTelegram(apiKey, chatId, comicUrlImage, comicUrl, altText, title string) {
 
 	botUrl := "https://api.telegram.org/bot" + apiKey + "/sendPhoto?"
 
-	titleUrl := "[" + title + "]" + "(" + comicArchiveUrl + ")"
+	titleUrl := "[" + title + "]" + "(" + comicUrl + ")"
 
 	resp, err := http.PostForm(botUrl,
-		url.Values{"chat_id": {chatId}, "photo": {comicUrl}, "parse_mode": {"markdown"}, "caption": {titleUrl}})
+		url.Values{"chat_id": {chatId}, "photo": {comicUrlImage}, "parse_mode": {"markdown"}, "caption": {titleUrl}})
 	if err != nil {
 		panic(err)
 	}
