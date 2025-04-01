@@ -16,15 +16,11 @@ func getFeed(feedUrl string) (byteValue []byte) {
 		panic(err)
 	}
 
-	//req.Header.Set("User-Agent", "gotomic-rss/1.0")
 	req.Header.Add("If-None-Match", readFile())
 	resp, err := client.Do(req)
 	if err != nil {
 		panic(err)
 	}
-
-	// this prints the user agent
-	//fmt.Println(req.UserAgent())
 
 	byteValue, _ = io.ReadAll(resp.Body)
 
@@ -34,8 +30,7 @@ func getFeed(feedUrl string) (byteValue []byte) {
 	}
 
 	if resp.Status == "304 Not Modified" && resp.StatusCode < 399 {
-		// if the Last-Modified Tag matches we do not do anything
-		fmt.Println("ETag matches, process stops here, no need to get the feed")
+		fmt.Println("ETag matches, no need to get the feed")
 		os.Exit(0)
 
 	}
@@ -43,8 +38,7 @@ func getFeed(feedUrl string) (byteValue []byte) {
 		if resp.Header.Get("ETag") != "" {
 			headerValue := resp.Header.Get("ETag")
 			writeFile(headerValue)
-			//fmt.Println("found ETag")
-			//fmt.Println(headerValue)
+			fmt.Println("this is the ETag: " + headerValue)
 		}
 
 	}

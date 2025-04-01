@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 )
 
-func rootPath() (rootPath string) {
+func currentPath() (rootPath string) {
 
 	path, err := os.Getwd()
 	if err != nil {

@@ -2,11 +2,13 @@ package main
 
 import (
 	"encoding/xml"
+	"errors"
 	"fmt"
-	"log"
 	"strings"
 	"time"
 )
+
+var formatsAtom = []string{time.RFC3339, time.RFC3339Nano}
 
 type Feed struct {
 	XMLName xml.Name `xml:"feed"`
@@ -71,19 +73,20 @@ func readatom(byteValue []byte) (title, comicUrl, lastBuildDateFormatted, comicU
 
 	d := feed.Entry[0].Updated
 
-	lastBuildDate, err := time.Parse("2006-01-02T03:04:05Z", d)
-	if err != nil {
-		log.Fatal(err)
-	}
+	lastBuildDate, _ := parseTimeAtom(d)
 
 	lastBuildDateFormatted = lastBuildDate.Format("2006-01-02 03:04:05")
 
-	today := time.Now()
-
-	todayFormatted := today.Format("2006-01-02 03:04:05")
-
-	_ = todayFormatted
-
 	return title, comicUrl, lastBuildDateFormatted, comicUrlImage, altText
 
+}
+
+func parseTimeAtom(input string) (time.Time, error) {
+	for _, format := range formatsAtom {
+		t, err := time.Parse(format, input)
+		if err == nil {
+			return t, nil
+		}
+	}
+	return time.Time{}, errors.New("Unrecognized time format")
 }
