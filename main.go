@@ -8,7 +8,6 @@ func main() {
 
 	configFile := readFlags()
 	apiKey, chatId := readConfig(configFile)
-	//currentPath := currentPath()
 	title, comicUrl, lastBuildDateFormatted, comicUrlImage, altText := readatom(getFeed("https://xkcd.com/atom.xml"))
 	fmt.Println("this is the title: " + title)
 	fmt.Println("this is the comic url: " + comicUrl)

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 )
 
@@ -15,10 +16,13 @@ func writeFile(etag string) {
 }
 
 func readFile() (etag string) {
-	dat, err := os.ReadFile("etag.txt")
-	if err != nil {
-		panic(1)
-	}
+	dat, _ := os.ReadFile("etag.txt")
+	defer func() {
+		if r := recover(); r != nil {
+
+			fmt.Println("Recovered. Error:\n", r)
+		}
+	}()
 
 	etag = string(dat)
 
