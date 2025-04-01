@@ -58,9 +58,7 @@ func readatom(byteValue []byte) (title, comicUrl, lastBuildDateFormatted, comicU
 
 	comicUrlImage = feed.Entry[0].Summary[0].Img[0].Src
 
-	comicUrlImage = strings.Replace(comicUrlImage, ".png", "", 1)
-
-	comicUrlImage = comicUrlImage + "_2x.png"
+	comicUrlImage = strings.Replace(comicUrlImage, ".png", "_2x.png", 1)
 
 	comicUrl = feed.Entry[0].Id
 
