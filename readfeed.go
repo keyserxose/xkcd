@@ -84,5 +84,5 @@ func parseTimeAtom(input string) (time.Time, error) {
 			return t, nil
 		}
 	}
-	return time.Time{}, errors.New("Unrecognized time format")
+	return time.Time{}, errors.New("unrecognized time format")
 }
