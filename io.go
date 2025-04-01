@@ -8,7 +8,7 @@ import (
 func writeFile(etag string) {
 
 	d1 := []byte(etag)
-	err := os.WriteFile("etag.txt", d1, 0644)
+	err := os.WriteFile(currentPath()+"/etag.txt", d1, 0644)
 	if err != nil {
 		panic(1)
 	}
@@ -16,7 +16,7 @@ func writeFile(etag string) {
 }
 
 func readFile() (etag string) {
-	dat, _ := os.ReadFile("etag.txt")
+	dat, _ := os.ReadFile(currentPath() + "/etag.txt")
 	defer func() {
 		if r := recover(); r != nil {
 
