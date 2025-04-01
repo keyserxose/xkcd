@@ -8,12 +8,11 @@ func main() {
 
 	configFile := readFlags()
 	apiKey, chatId := readConfig(configFile)
-	body := getFeed("https://xkcd.com/atom.xml")
 	//currentPath := currentPath()
-	title, comicUrl, lastBuildDateFormatted, comicUrlImage, altText := readatom(body)
-	fmt.Println("This is the title: " + title)
-	fmt.Println("This is the comic url: " + comicUrl)
-	fmt.Println("This is the date: " + lastBuildDateFormatted)
+	title, comicUrl, lastBuildDateFormatted, comicUrlImage, altText := readatom(getFeed("https://xkcd.com/atom.xml"))
+	fmt.Println("this is the title: " + title)
+	fmt.Println("this is the comic url: " + comicUrl)
+	fmt.Println("this is the date: " + lastBuildDateFormatted)
 	sendToTelegram(apiKey, chatId, comicUrlImage, comicUrl, altText, title)
 
 }

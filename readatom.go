@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/xml"
 	"errors"
-	"fmt"
 	"strings"
 	"time"
 )
@@ -67,7 +66,6 @@ func readatom(byteValue []byte) (title, comicUrl, lastBuildDateFormatted, comicU
 
 	comicUrl = comicUrl[16:]
 	comicUrl = "https://m.xkcd.com" + comicUrl
-	fmt.Println(comicUrl)
 
 	title = feed.Entry[0].Title
 
