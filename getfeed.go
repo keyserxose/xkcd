@@ -4,13 +4,10 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 )
 
-var headerValue string
-
 func getFeed(feedUrl string) (byteValue []byte) {
-
-	//var headerTypeSend string
 
 	client := &http.Client{}
 
@@ -33,27 +30,22 @@ func getFeed(feedUrl string) (byteValue []byte) {
 
 	if resp.StatusCode > 399 {
 		fmt.Println("server returned an error code")
+		os.Exit(0)
 	}
 
 	if resp.Status == "304 Not Modified" && resp.StatusCode < 399 {
 		// if the Last-Modified Tag matches we do not do anything
 		fmt.Println("ETag matches, process stops here, no need to get the feed")
+		os.Exit(0)
 
 	}
 	if resp.Status != "304 Not Modified" && resp.StatusCode < 399 {
 		if resp.Header.Get("ETag") != "" {
-			headerValue = resp.Header.Get("ETag")
+			headerValue := resp.Header.Get("ETag")
 			writeFile(headerValue)
-			fmt.Println("found ETag")
-			fmt.Println(headerValue)
+			//fmt.Println("found ETag")
+			//fmt.Println(headerValue)
 		}
-		/* if validateFeedType(byteValue) == "atom" {
-			postTitle, postLink, postLastBuildDate, feedTitle = readAtom(byteValue)
-			if headerValue != "" {
-				writeLastModified(headerValue, headerType, id)
-			}
-
-		}*/
 
 	}
 
