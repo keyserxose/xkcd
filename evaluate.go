@@ -27,7 +27,6 @@ func evaluate(rootPath, database, filename, title, executionDate, lastBuildDateF
 		fmt.Println("Getting today's comic URL: " + comicUrl)
 		fmt.Println("Getting Image url: " + comicUrlImage)
 		sendToTelegram(apiKey, chatId, comicUrlImage, comicUrl, altText, title)
-		writeDB(rootPath, database, title, lastBuildDateFormatted)
 	}
 
 }

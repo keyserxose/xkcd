@@ -3,9 +3,7 @@ package main
 import (
 	"encoding/xml"
 	"fmt"
-	"io"
 	"log"
-	"os"
 	"strings"
 	"time"
 )
@@ -40,16 +38,7 @@ type Img struct {
 	Alt     string   `xml:"alt,attr"`
 }
 
-func readatom() (title, comicUrl, lastBuildDateFormatted, comicUrlImage, altText string) {
-
-	xmlFile, err := os.Open("atom.xml")
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	defer xmlFile.Close()
-
-	byteValue, _ := io.ReadAll(xmlFile)
+func readatom(byteValue []byte) (title, comicUrl, lastBuildDateFormatted, comicUrlImage, altText string) {
 
 	replace := string(byteValue)
 
@@ -94,12 +83,6 @@ func readatom() (title, comicUrl, lastBuildDateFormatted, comicUrlImage, altText
 	todayFormatted := today.Format("2006-01-02 03:04:05")
 
 	_ = todayFormatted
-
-	// Re-enable this once testing is done
-	err = os.Remove("atom.xml")
-	if err != nil {
-		fmt.Println(err)
-	}
 
 	return title, comicUrl, lastBuildDateFormatted, comicUrlImage, altText
 

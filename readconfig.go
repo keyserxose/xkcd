@@ -6,12 +6,11 @@ import (
 	"os"
 )
 
-func readConfig(configFile *string) (apiKey, chatId, database string) {
+func readConfig(configFile *string) (apiKey, chatId string) {
 
 	type Configuration struct {
-		ApiKey   string
-		ChatId   string
-		Database string
+		ApiKey string
+		ChatId string
 	}
 
 	file, err := os.Open(*configFile)
@@ -25,6 +24,6 @@ func readConfig(configFile *string) (apiKey, chatId, database string) {
 	if err != nil {
 		fmt.Println("error:", err)
 	}
-	return configuration.ApiKey, configuration.ChatId, configuration.Database
+	return configuration.ApiKey, configuration.ChatId
 
 }
