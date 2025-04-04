@@ -28,12 +28,3 @@ func currentPath() (currentPath string) {
 	return currentPath
 
 }
-
-func homePath() (dirname string) {
-
-	dirname, err := os.UserHomeDir()
-	if err != nil {
-		log.Fatal(err)
-	}
-	return dirname
-}
