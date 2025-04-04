@@ -21,12 +21,12 @@ func sendToTelegram(apiKey, chatId, comicUrlImage, comicUrl, altText, title stri
 
 	botUrlText := "https://api.telegram.org/bot" + apiKey + "/sendMessage?"
 
-	resp2, err := http.PostForm(botUrlText,
+	resp, err = http.PostForm(botUrlText,
 		url.Values{"chat_id": {chatId}, "parse_mode": {"markdown"}, "text": {altText}})
 	if err != nil {
 		panic(err)
 	}
 
-	defer resp2.Body.Close()
+	defer resp.Body.Close()
 
 }
