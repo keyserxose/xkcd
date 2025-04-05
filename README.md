@@ -8,3 +8,7 @@
   "ApiKey": "...",
   "ChatId": "..."
 }
+
+
+###### License
+###### XKCD is a webcomic created by Randall Munroe (https://xkcd.com/license.html)
